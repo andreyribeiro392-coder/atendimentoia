@@ -1,3 +1,3 @@
-# OnTop Atendimento IA
+# OnTop Atendimento IA — Free
 
-Assistente inteligente para pequenos negócios.
+Versão pública com 5 respostas diárias. Configure `NEXT_PUBLIC_KIWIFY_CHECKOUT_URL` na Vercel para ativar o checkout Premium.
