@@ -1,0 +1,1 @@
+import{NextResponse}from'next/server';export async function POST(){try{const r=await fetch(process.env.UPSTASH_REDIS_REST_URL,{method:'POST',headers:{Authorization:`Bearer ${process.env.UPSTASH_REDIS_REST_TOKEN}`,'Content-Type':'application/json'},body:JSON.stringify(['HINCRBY','ontop:metrics','checkout_click',1])});if(!r.ok)throw 0}catch{}return NextResponse.json({ok:true})}
