@@ -15,7 +15,7 @@ export default function Home(){
    <div className="content">
     <div className="hero">
      <div className="copy"><b className="orb">✦</b><em>IA PARA PEQUENOS NEGÓCIOS</em><h1>O que você precisa <span>responder hoje?</span></h1><p>Cole uma conversa, explique a situação e receba uma resposta profissional, natural e pronta para adaptar.</p><div className="pills"><i>✓ Respostas naturais</i><i>✓ Foco no seu negócio</i><i>✓ Pronto para copiar</i></div></div>
-     <div className="art"><img src="/assistente-ia-hero.png" alt="Assistente digital com conversas e agenda"/><div><small>PREMIUM</small><b>50</b><span>perguntas por dia</span></div></div>
+     <div className="art"><img src="/assistente-ia-hero.webp" alt="Assistente digital com conversas e agenda"/><div><small>PREMIUM</small><b>50</b><span>perguntas por dia</span></div></div>
     </div>
     <div className="suggestions">{suggestions.map(s=><button key={s} onClick={()=>setMessage(s)}>✦<span>{s}</span></button>)}</div>
     <div className="composer"><textarea value={message} onChange={e=>setMessage(e.target.value)} placeholder="Ex.: O cliente perguntou o preço e depois não respondeu..." /><footer><small>↻ 2 perguntas restantes hoje</small><button disabled={!message.trim()}>↑</button></footer></div>
