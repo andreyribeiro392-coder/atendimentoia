@@ -46,13 +46,13 @@ export async function POST(request) {
     const groq = await fetchWithTimeout('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: { Authorization: `Bearer ${process.env.GROQ_API_KEY}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile', temperature: 0.65, max_tokens: 450, messages: [
+      body: JSON.stringify({ model: 'llama-3.3-70b-versatile', temperature: 0.65, max_tokens: 450, messages: [
         { role: 'system', content: 'Você é a assistente OnTop para profissionais de beleza que atendem pelo WhatsApp. Escreva uma resposta curta, natural, profissional e pronta para copiar, em português brasileiro, focada em conseguir o agendamento sem pressionar e sem prometer resultados.' },
         { role: 'user', content: text }
       ] })
     });
     const data = await groq.json();
-    if (!groq.ok || !data.choices?.[0]?.message?.content) throw new Error(`GROQ_${groq.status}`);
+    if (!groq.ok || !data.choices?.[0]?.message?.content) throw new Error(data?.error?.message || `GROQ_${groq.status}`);
     await redis(['HINCRBY', 'ontop:metrics', 'free_ai_answers', 1]).catch(() => {});
     return NextResponse.json({ answer: data.choices[0].message.content, remaining: 5 - used });
   } catch (error) {
