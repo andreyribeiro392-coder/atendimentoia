@@ -30,7 +30,7 @@ export async function POST(request) {
   try {
     const { message = '' } = await request.json();
     const text = String(message).trim();
-    if (text.length < 10 || text.length > 5000) return NextResponse.json({ error: 'Escreva uma mensagem com pelo menos 10 caracteres.' }, { status: 400 });
+    if (text.length < 2 || text.length > 5000) return NextResponse.json({ error: 'Escreva uma mensagem com pelo menos 2 caracteres.' }, { status: 400 });
     if (!process.env.GROQ_API_KEY) throw new Error('GROQ_NOT_CONFIGURED');
     const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || 'unknown';
     const fingerprint = `${ip}:${request.headers.get('user-agent') || ''}:${process.env.AUTH_SECRET || 'free-usage'}`;
